@@ -6,8 +6,10 @@ import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Polygon;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Scale;
 
@@ -22,7 +24,11 @@ public class EyeballController {
     @FXML
     private Pane rotateContainer;
     @FXML
-    private Pane indicatorLine;
+    private Pane indicatorLineContainer;
+    @FXML
+    private Line indicatorLine;
+    @FXML
+    private Polygon arrowHead;
 
     private double initialSceneX, initialSceneY;
 
@@ -33,18 +39,9 @@ public class EyeballController {
         if (mouseEvent.isPrimaryButtonDown()) {
             if (mouseEvent.isAltDown()) {
 
-                double centerX = translateContainer.getTranslateX();
-                double centerY = translateContainer.getTranslateY();
+                double angle = calculateRotationAngle(currentSceneX, currentSceneY);
 
-                double initialCenterToSceneX = initialSceneX - centerX;
-                double initialCenterToSceneY = initialSceneY - centerY;
-
-                double currentCenterToSceneX = currentSceneX - centerX;
-                double currentCenterToSceneY = currentSceneY - centerY;
-
-                double angle = Math.toDegrees(Math.atan2(currentCenterToSceneY, currentCenterToSceneX) - Math.atan2(initialCenterToSceneY, initialCenterToSceneX));
-
-                rotateContainer.getTransforms().add(new Rotate(angle));
+                rotate(angle);
             } else {
                 double offsetX = currentSceneX - initialSceneX;
                 double offsetY = currentSceneY - initialSceneY;
@@ -52,12 +49,33 @@ public class EyeballController {
                 translate(offsetX, offsetY);
             }
         } else if (mouseEvent.isSecondaryButtonDown()) {
-            double scaling = (initialSceneY - currentSceneY) / 500 + 1;
-            translateContainer.getTransforms().add(new Scale(scaling, scaling));
+            double scalingFactor = (initialSceneY - currentSceneY) / 500 + 1;
+            scale(scalingFactor);
         }
 
         initialSceneX = currentSceneX;
         initialSceneY = currentSceneY;
+    }
+
+    private double calculateRotationAngle(double currentSceneX, double currentSceneY) {
+        double centerX = translateContainer.getTranslateX();
+        double centerY = translateContainer.getTranslateY();
+
+        double initialCenterToSceneX = initialSceneX - centerX;
+        double initialCenterToSceneY = initialSceneY - centerY;
+
+        double currentCenterToSceneX = currentSceneX - centerX;
+        double currentCenterToSceneY = currentSceneY - centerY;
+
+        return Math.toDegrees(Math.atan2(currentCenterToSceneY, currentCenterToSceneX) - Math.atan2(initialCenterToSceneY, initialCenterToSceneX));
+    }
+
+    public void scale(double scalingFactor) {
+        translateContainer.getTransforms().add(new Scale(scalingFactor, scalingFactor));
+    }
+
+    public void rotate(double angle) {
+        rotateContainer.getTransforms().add(new Rotate(angle));
     }
 
     public void translate(double offsetX, double offsetY) {
@@ -107,15 +125,15 @@ public class EyeballController {
 
         double offsetY = currentSceneY - initialSceneY;
 
-        double indicatorOffset = indicatorLine.getTranslateY() + offsetY;
+        double indicatorOffset = indicatorLineContainer.getTranslateY() + offsetY;
         if (indicatorOffset > 0 ) indicatorOffset = 0;
         if (indicatorOffset < -200 ) indicatorOffset = -200;
 
-        indicatorLine.setTranslateY(indicatorOffset);
+        indicatorLineContainer.setTranslateY(indicatorOffset);
 
         initialSceneY = currentSceneY;
 
-        System.out.println(indicatorLine.getTranslateY() / -200);
+        System.out.println(indicatorLineContainer.getTranslateY() / -200);
     }
 
     public void onIndicatorReleased(MouseEvent mouseEvent) {
@@ -123,7 +141,15 @@ public class EyeballController {
     }
 
     public void onCircleScroll(ScrollEvent scrollEvent) {
-        double scaling = scrollEvent.getDeltaY() / 500 + 1;
-        translateContainer.getTransforms().add(new Scale(scaling, scaling));
+        double scalingFactor = scrollEvent.getDeltaY() / 500 + 1;
+        scale(scalingFactor);
+    }
+
+    public void setColor(Color color){
+        circle.setStroke(color);
+        centerLine.setStroke(color);
+        indicatorLine.setStroke(color);
+        arrowHead.setStroke(color);
+        arrowHead.setFill(color);
     }
 }

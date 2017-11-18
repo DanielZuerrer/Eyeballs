@@ -18,7 +18,7 @@
             <Pane layoutY="-0.0" prefHeight="0.0" prefWidth="0.0">
                <children>
                   <Line fx:id="centerLine" endY="150.0" startY="-150.0" stroke="#3cff00" strokeWidth="2.0" />
-                  <Polygon fill="#3cff00" layoutY="-150.0" stroke="TRANSPARENT" strokeType="INSIDE">
+                  <Polygon fx:id="arrowHead" fill="#3cff00" layoutY="-150.0" stroke="TRANSPARENT" strokeType="INSIDE">
                     <points>
                       <Double fx:value="-5.0" />
                       <Double fx:value="4.0" />
@@ -30,9 +30,9 @@
                   </Polygon>
                </children>
             </Pane>
-            <Pane fx:id="indicatorLine" layoutX="-100.0" layoutY="90.0" onMouseDragged="#onIndicatorDragged" onMouseEntered="#onIndicatorEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onIndicatorReleased" prefHeight="20.0" prefWidth="200.0">
+            <Pane fx:id="indicatorLineContainer" layoutX="-100.0" layoutY="90.0" onMouseDragged="#onIndicatorDragged" onMouseEntered="#onIndicatorEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onIndicatorReleased" prefHeight="20.0" prefWidth="200.0">
                <children>
-                  <Line endX="100.0" layoutX="100.0" layoutY="10.0" startX="-100.0" stroke="#3cff00" strokeWidth="2.0" />
+                  <Line fx:id="indicatorLine" endX="100.0" layoutX="100.0" layoutY="10.0" startX="-100.0" stroke="#3cff00" strokeWidth="2.0" />
                </children>
             </Pane>
          </children>
