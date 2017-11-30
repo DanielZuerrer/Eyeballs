@@ -20,6 +20,8 @@ public class EyeballDeformController {
     @FXML
     private EyeballController eyeballRightController;
     @FXML
+    private DataController dataPanelController;
+    @FXML
     private ImageView imageView;
 
     @FXML
@@ -28,6 +30,16 @@ public class EyeballDeformController {
         eyeballRightController.translate(740,360);
         eyeballLeftController.setColor(new Color(0.1, 0.82, 0.29, 1));
         eyeballRightController.setColor(new Color(0.81, 0.17, 0.16, 1));
+
+        dataPanelController.translate(1350,0);
+
+        eyeballLeftController.indicatorValueProperty().addListener((obs, oldValue, newValue) -> {
+            dataPanelController.setLeftValue(Math.max(0, newValue.doubleValue()));
+        });
+
+        eyeballRightController.indicatorValueProperty().addListener((obs, oldValue, newValue) -> {
+            dataPanelController.setRightValue(Math.max(0, newValue.doubleValue()));
+        });
     }
 
     public void dragDropped(DragEvent dragEvent) {

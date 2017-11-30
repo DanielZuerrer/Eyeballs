@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane fx:id="mainContainer" prefHeight="1080.0" prefWidth="570.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.DataController">
+   <children>
+      <Text fx:id="leftValue" layoutX="33.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LEFT: 0" wrappingWidth="251.52197265625">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+      <Text fx:id="rightValue" layoutX="285.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RIGHT: 0" wrappingWidth="251.52197265625">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+   </children>
+</Pane>

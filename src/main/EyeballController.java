@@ -1,5 +1,10 @@
 package main;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
@@ -31,6 +36,8 @@ public class EyeballController {
     private Polygon arrowHead;
 
     private double initialSceneX, initialSceneY;
+
+    private final DoubleProperty indicatorValue = new SimpleDoubleProperty();
 
     public void onCircleDragged(MouseEvent mouseEvent) {
         double currentSceneX = mouseEvent.getSceneX();
@@ -133,7 +140,7 @@ public class EyeballController {
 
         initialSceneY = currentSceneY;
 
-        System.out.println(indicatorLineContainer.getTranslateY() / -200);
+        indicatorValue.setValue(indicatorLineContainer.getTranslateY() / -200);
     }
 
     public void onIndicatorReleased(MouseEvent mouseEvent) {
@@ -151,5 +158,13 @@ public class EyeballController {
         indicatorLine.setStroke(color);
         arrowHead.setStroke(color);
         arrowHead.setFill(color);
+    }
+
+    public DoubleProperty indicatorValueProperty() {
+        return indicatorValue;
+    }
+
+    public final double getIndicatorValue(){
+        return indicatorValueProperty().get();
     }
 }
