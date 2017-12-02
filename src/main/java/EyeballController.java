@@ -1,4 +1,4 @@
-package main;
+package main.java;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.property.DoubleProperty;
@@ -91,8 +91,8 @@ public class EyeballController {
 
         try {
         if (translateContainer.getTranslateX() < 0) translateContainer.setTranslateX(0);
-        if (translateContainer.getTranslateX() > translateContainer.getScene().getWidth())
-            translateContainer.setTranslateX(translateContainer.getScene().getWidth());
+        if (translateContainer.getTranslateX() > 1350)
+            translateContainer.setTranslateX(1350);
         if (translateContainer.getTranslateY() < 0) translateContainer.setTranslateY(0);
         if (translateContainer.getTranslateY() > translateContainer.getScene().getHeight())
             translateContainer.setTranslateY(translateContainer.getScene().getHeight());
@@ -131,6 +131,14 @@ public class EyeballController {
         double currentSceneY = mouseEvent.getSceneY();
 
         double offsetY = currentSceneY - initialSceneY;
+
+        if (mouseEvent.isShiftDown()) {
+            if (offsetY > 0) {
+                offsetY = 0.1;
+            } else if (offsetY < 0) {
+                offsetY = -0.1;
+            }
+        }
 
         double indicatorOffset = indicatorLineContainer.getTranslateY() + offsetY;
         if (indicatorOffset > 0 ) indicatorOffset = 0;

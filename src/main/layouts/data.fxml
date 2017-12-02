@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane fx:id="mainContainer" prefHeight="1080.0" prefWidth="570.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.DataController">
+   <children>
+      <TextField alignment="TOP_LEFT" layoutX="24.0" layoutY="308.0" prefHeight="126.0" prefWidth="521.0" promptText="comment">
+         <font>
+            <Font name="Roboto" size="25.0" />
+         </font>
+      </TextField>
+      <Text fx:id="leftValue" layoutX="398.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0.0%" textAlignment="RIGHT">
+         <font>
+            <Font name="Roboto" size="36.0" />
+         </font>
+      </Text>
+      <Text fx:id="rightValue" layoutX="74.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0.0%" textAlignment="RIGHT">
+         <font>
+            <Font name="Roboto" size="36.0" />
+         </font>
+      </Text>
+      <Text layoutX="293.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Left Globe" textAlignment="RIGHT" wrappingWidth="251.52197265625">
+         <font>
+            <Font name="Roboto" size="36.0" />
+         </font>
+      </Text>
+      <Text layoutX="24.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Right Globe " wrappingWidth="251.52197265625">
+         <font>
+            <Font name="Roboto" size="36.0" />
+         </font>
+      </Text>
+      <TextField layoutX="24.0" layoutY="93.0" prefHeight="48.0" prefWidth="521.0" promptText="#">
+         <font>
+            <Font name="Roboto" size="25.0" />
+         </font>
+      </TextField>
+      <Text fill="#00000080" layoutX="15.0" layoutY="1045.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Globe: MOVE (Drag) • ROTATE (Alt + Drag) • RESIZE (Scroll/Drag Right)" textAlignment="CENTER">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="24.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Posterior Globe Flattening">
+         <font>
+            <Font name="Roboto" size="45.0" />
+         </font>
+      </Text>
+      <Text fill="#00000080" layoutX="15.0" layoutY="1070.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Indicator: MOVE (Drag) • PRECICE MOVE (Shift + Drag)" textAlignment="CENTER">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <!--<Button fx:id="chooseImageButton" layoutX="24.0" layoutY="931.0" mnemonicParsing="false" onAction="#chooseImagePressed" prefHeight="105.0" prefWidth="521.0" text="Choose Image..." textAlignment="CENTER">-->
+         <!--<font>-->
+            <!--<Font name="Roboto" size="30.0" />-->
+         <!--</font>-->
+      <!--</Button>-->
+   </children>
+</Pane>
