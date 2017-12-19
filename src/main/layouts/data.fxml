@@ -27,14 +27,14 @@
             <Font name="Roboto" size="32.0" />
          </font>
       </Text>
-      <Text layoutX="228.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Left Globe" textAlignment="RIGHT" wrappingWidth="146.52197265625">
+      <Text layoutX="196.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Left Globe" textAlignment="RIGHT" wrappingWidth="173.52197265625">
          <font>
-            <Font name="Roboto" size="32.0" />
+            <Font name="Roboto" size="30.0" />
          </font>
       </Text>
-      <Text layoutX="5.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Right Globe " wrappingWidth="174.52197265625">
+      <Text layoutX="5.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Right Globe " wrappingWidth="190.52197265625">
          <font>
-            <Font name="Roboto" size="32.0" />
+            <Font name="Roboto" size="30.0" />
          </font>
       </Text>
       <TextField fx:id="patientNumber" layoutX="5.0" layoutY="62.0" prefHeight="45.0" prefWidth="370.0" promptText="#">
@@ -44,7 +44,7 @@
       </TextField>
       <Text fill="#00000080" layoutX="5.0" layoutY="596.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Globe:&#10;MOVE (Drag)&#10;ROTATE (Alt + Drag)&#10;RESIZE (Scroll/Drag Right)" wrappingWidth="209.6484375">
          <font>
-            <Font size="16.0" />
+            <Font size="14.0" />
          </font>
       </Text>
       <Text layoutX="5.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Posterior Globe Flattening">
@@ -54,7 +54,7 @@
       </Text>
       <Text fill="#00000080" layoutX="5.0" layoutY="678.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Indicator:&#10;MOVE (Drag)&#10;PRECISE MOVE (Shift + Drag)">
          <font>
-            <Font size="16.0" />
+            <Font size="14.0" />
          </font>
       </Text>
       <Button layoutX="5.0" layoutY="360.0" mnemonicParsing="false" onAction="#saveClicked" prefHeight="90.0" prefWidth="370.0" text="Save" textAlignment="CENTER">
