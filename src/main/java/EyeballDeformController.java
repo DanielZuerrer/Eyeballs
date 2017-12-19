@@ -1,12 +1,17 @@
 package main.java;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Box;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -26,14 +31,15 @@ public class EyeballDeformController {
     @FXML
     private ImageView imageView;
 
+
     @FXML
     public void initialize() {
-        eyeballRightController.translate(375, 260);
-        eyeballLeftController.translate(975, 260);
+        eyeballRightController.translate(250, 260);
+        eyeballLeftController.translate(650, 260);
         eyeballRightController.setColor(new Color(0.1, 0.82, 0.29, 1));
         eyeballLeftController.setColor(new Color(0.81, 0.17, 0.16, 1));
 
-        dataPanelController.translate(1350, 0);
+        dataPanelController.translate(900, 0);
 
         eyeballRightController.indicatorValueProperty().addListener((obs, oldValue, newValue) -> {
             dataPanelController.setRightValue(Math.max(0, newValue.doubleValue()));
@@ -62,14 +68,6 @@ public class EyeballDeformController {
         Dragboard board = dragEvent.getDragboard();
         if (board.hasFiles()) {
             dragEvent.acceptTransferModes(TransferMode.ANY);
-        }
-    }
-
-    public void setImage() {
-        File file = new FileChooser().showOpenDialog(new Stage());
-        if (file != null) {
-            Image image = new Image(file.toURI().toString());
-            imageView.setImage(image);
         }
     }
 

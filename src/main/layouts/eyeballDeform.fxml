@@ -6,15 +6,15 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane fx:id="mainContainer" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.EyeballDeformController">
+<Pane fx:id="mainContainer" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.EyeballDeformController">
    <children>
-      <ImageView fx:id="imageView" fitHeight="1080.0" fitWidth="1350.0" onDragDropped="#dragDropped" onDragOver="#dragOver" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageView" fitHeight="720.0" fitWidth="900.0" onDragDropped="#dragDropped" onDragOver="#dragOver" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/DropHere.png" />
          </image></ImageView>
        <fx:include fx:id="eyeballLeft" source="eyeball.fxml" />
        <fx:include fx:id="eyeballRight" source="eyeball.fxml" />
-      <Line endY="1080.0" layoutX="1350.0" />
+      <Line endY="720.0" layoutX="900.0" />
        <fx:include fx:id="dataPanel" source="data.fxml" />
    </children>
 </Pane>

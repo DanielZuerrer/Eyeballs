@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import main.java.DataController;
 
 public class Main extends Application {
 
@@ -16,8 +17,13 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("layouts/eyeballDeform.fxml"));
+
+        FXMLLoader dataLoader = new FXMLLoader(getClass().getResource("layouts/data.fxml"));
+        dataLoader.load();
+        ((DataController) dataLoader.getController()).setStage(primaryStage);
+
         primaryStage.setTitle("Posterior Globe Flattening");
-        primaryStage.setScene(new Scene(root, 1920, 1080));
+        primaryStage.setScene(new Scene(root, 1280,720));
         primaryStage.show();
     }
 
