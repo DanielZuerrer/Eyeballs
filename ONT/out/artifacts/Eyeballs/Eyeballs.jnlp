@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="Eyeballs.jnlp">
+  <information>
+    <title>Posterior Globe Flattening</title>
+    <vendor>Unknown</vendor>
+    <description>Eyeballs</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="Eyeballs.jar" size="46488" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="1920" height="1080" main-class="main.Main"  name="Eyeballs" />
+  <update check="background"/>
+</jnlp>
