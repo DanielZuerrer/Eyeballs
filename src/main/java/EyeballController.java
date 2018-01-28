@@ -91,8 +91,8 @@ public class EyeballController {
 
         try {
         if (translateContainer.getTranslateX() < 0) translateContainer.setTranslateX(0);
-        if (translateContainer.getTranslateX() > 1350)
-            translateContainer.setTranslateX(1350);
+        if (translateContainer.getTranslateX() > 900)
+            translateContainer.setTranslateX(900);
         if (translateContainer.getTranslateY() < 0) translateContainer.setTranslateY(0);
         if (translateContainer.getTranslateY() > translateContainer.getScene().getHeight())
             translateContainer.setTranslateY(translateContainer.getScene().getHeight());

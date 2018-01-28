@@ -26,7 +26,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -52,10 +54,11 @@ public class DataController {
 
     private static Stage stage;
 
-    public void setStage(Stage stage){
+    public void setStage(Stage stage) {
         this.stage = stage;
     }
 
+    private File csvFile;
 
 
     public void translate(double offsetX, double offsetY) {
@@ -72,23 +75,59 @@ public class DataController {
     public void setRightValue(double value) {
         rightNumberValue = value;
         double percent = (100 * value);
-        rightValue.setText(String.format("%.1f%%", percent));    }
+        rightValue.setText(String.format("%.1f%%", percent));
+    }
 
     public void saveClicked(ActionEvent actionEvent) {
-        String rightValue = String.format("%.2f", rightNumberValue);
-        String leftValue = String.format("%.2f", leftNumberValue);
+        String rightValue = String.format("%.3f", rightNumberValue);
+        String leftValue = String.format("%.3f", leftNumberValue);
 
-        String filename = "pat#" + patientNumber.getText() + "_pfg_R_" + rightValue + "_L_" + leftValue;
+        String filename = "pat#" + patientNumber.getText() + "_pgf_R_" + rightValue + "_L_" + leftValue;
         Clipboard clipboard = Clipboard.getSystemClipboard();
         ClipboardContent content = new ClipboardContent();
         content.putString(filename);
         clipboard.setContent(content);
 
-        saveImage(filename);
+        boolean imageSelected = saveImage(filename);
+
+        if (imageSelected) {
+            saveCSV();
+        }
 
     }
 
-    private void saveImage(String filename) {
+    private void saveCSV() {
+        try {
+
+            if (csvFile == null) {
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("Save CSV");
+                fileChooser.setInitialFileName("PGF.csv");
+
+                csvFile = fileChooser.showSaveDialog(stage);
+            }
+
+            if (csvFile == null) {
+                return;
+            }
+
+            if (!csvFile.exists()) {
+                csvFile.createNewFile();
+            }
+            BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile.getAbsoluteFile(), true));
+
+            if (csvFile.length() == 0) {
+                writer.write("PatNumber,R,L\n");
+            }
+
+            writer.write(patientNumber.getText() + "," + String.format("%.3f", rightNumberValue) + "," + String.format("%.3f", leftNumberValue) + "\n");
+            writer.close();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    private boolean saveImage(String filename) {
 
         Group root = new Group();
 
@@ -105,7 +144,7 @@ public class DataController {
         root.getChildren().add(box);
 
         Text mainInfo = new Text();
-        mainInfo.setText("Patient #" + patientNumber.getText() + ": PFG right " + rightValue.getText() + ", PFG left " + leftValue.getText());
+        mainInfo.setText("Patient #" + patientNumber.getText() + ": PGF right " + rightValue.getText() + ", PGF left " + leftValue.getText());
         mainInfo.setX(15);
         mainInfo.setY(666);
         mainInfo.setFont(Font.font("Roboto", 28));
@@ -139,8 +178,13 @@ public class DataController {
         if (file != null) {
             try {
                 ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null), "png", file);
-            } catch (IOException e) {}
+            } catch (IOException e) {
+            }
+            return true;
+        } else {
+            return false;
         }
+
 
     }
 }
