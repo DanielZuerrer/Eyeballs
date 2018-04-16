@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import javafx.scene.shape.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
 
 <Pane fx:id="translateContainer" onMouseDragged="#onTranslateDragged" onMouseEntered="#onTranslateEntered" onMouseExited="#onTranslateExited" onMousePressed="#onTranslatePressed" onMouseReleased="#onTranslateReleased" onScroll="#onTranslateScroll" prefHeight="75.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.EyeballController">
-   <children>
-            <Line fx:id="centerLine" endY="75.0" layoutX="150.0" stroke="#3cff00" />
-            <Pane fx:id="baseLineContainer" prefHeight="10.0" prefWidth="300.0">
-               <children>
-                  <Line fx:id="baseLine" endX="300.0" layoutY="5.0" stroke="#3cff00" strokeWidth="3.0" />
-                  <Pane fx:id="thicknessLineContainer" layoutY="10.0" onMouseDragged="#onThicknessDragged" onMousePressed="#onThicknessPressed" onMouseReleased="#onThicknessReleased" prefHeight="10.0" prefWidth="300.0">
-                     <children>
-                  <Circle fx:id="rotationCenter" centerX="150.0" centerY="5.0" fill="#00ffa0" radius="3.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-                        <Line fx:id="thicknessLine" endX="300.0" layoutY="5.0" stroke="#00ffa0" strokeWidth="3.0" />
-                        <Pane fx:id="tortuosityLineContainer" layoutY="10.0" prefHeight="10.0" prefWidth="300.0">
-                           <children>
-                              <Line fx:id="tortuosityLine" endX="300.0" layoutY="5.0" stroke="#00ffe6" strokeWidth="3.0" />
-                           </children>
+    <children>
+        <Line fx:id="centerLine" endY="75.0" layoutX="150.0" stroke="#3cff00" />
+        <Pane fx:id="baseLineContainer" prefHeight="10.0" prefWidth="300.0">
+            <children>
+                <Line fx:id="baseLine" endX="300.0" layoutY="5.0" stroke="#3cff00" strokeWidth="3.0" />
+                <Pane fx:id="thicknessLineContainer" layoutY="20.0" prefHeight="2.0" prefWidth="300.0">
+                    <children>
+                        <Circle fx:id="rotationCenter" centerX="150.0" fill="#00ffa0" radius="3.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                        <Line fx:id="thicknessLine" endX="300.0" stroke="#00ffa0" strokeWidth="3.0" />
+                        <Circle fx:id="thicknessControl" centerX="5.0" fill="#00ffa0" onMouseDragged="#onThicknessDragged" onMouseEntered="#onThicknessEntered" onMouseExited="#onThicknessExited" onMousePressed="#onThicknessPressed" onMouseReleased="#onThicknessReleased" radius="8.0" />
+                        <Pane fx:id="tortuosityLineContainer" layoutY="20.0" prefHeight="2.0" prefWidth="300.0">
+                            <children>
+                                <Line fx:id="tortuosityLine" endX="300.0" stroke="#00ffe6" strokeWidth="3.0" />
+                                <Circle fx:id="tortuosityControl" centerX="295.0" fill="#00ffe6" onMouseDragged="#onTortuosityDragged" onMousePressed="#onTortuosityPressed" onMouseReleased="#onTortuosityReleased" onMouseEntered="#onTortuosityEntered" onMouseDragExited="#onTortuosityExited" radius="8.0" />
+                            </children>
                         </Pane>
-                     </children>
-                  </Pane>
-               </children>
-            </Pane>
-   </children>
+                    </children>
+                </Pane>
+            </children>
+        </Pane>
+    </children>
 </Pane>

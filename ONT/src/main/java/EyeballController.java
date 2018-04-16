@@ -29,6 +29,7 @@ public class EyeballController {
     private Line tortuosityLine;
 
     private Delta dragDelta = new Delta();
+    private double rotation = 0;
 
 
     // ============ CONTAINER TRANSLATIONS ============
@@ -49,6 +50,7 @@ public class EyeballController {
         double rotationY = thicknessLineContainer.getLayoutY() + thicknessLine.getLayoutY();
 
         translateContainer.getTransforms().add(new Rotate(rotationAngle, 150, rotationY));
+        rotation += rotationAngle;
     }
 
     public void keepTranslateContainerInWindow() {
@@ -81,6 +83,15 @@ public class EyeballController {
     }
 
     // ============ THICKNESS LINE TRANSLATIONS ============
+    public void onThicknessEntered(MouseEvent mouseEvent){
+        ((Node) mouseEvent.getSource()).setCursor(Cursor.HAND);
+
+    }
+
+    public void onThicknessExited(MouseEvent mouseEvent){
+        ((Node) mouseEvent.getSource()).setCursor(Cursor.DEFAULT);
+    }
+
     public void onThicknessPressed(MouseEvent mouseEvent){
         dragDelta.y = mouseEvent.getSceneY();
         ((Node) mouseEvent.getSource()).setCursor(Cursor.CLOSED_HAND);
@@ -94,11 +105,19 @@ public class EyeballController {
     public void onThicknessDragged(MouseEvent mouseEvent) {
         if (mouseEvent.isPrimaryButtonDown()) {
             double yOffset = mouseEvent.getSceneY() - dragDelta.y;
-            thicknessLineContainer.setLayoutY(thicknessLineContainer.getLayoutY() + yOffset);
+            double xOffset = mouseEvent.getSceneX() - dragDelta.x;
+
+            double r = rotation * Math.PI / 180;
+
+            double offset = Math.cos(r) * yOffset + Math.sin(r) * (-xOffset);
+
+            thicknessLineContainer.setLayoutY(thicknessLineContainer.getLayoutY() + offset);
         }
         dragDelta.y = mouseEvent.getSceneY();
+        dragDelta.x = mouseEvent.getSceneX();
         keepThicknessLineContainerInBounds();
         mouseEvent.consume();
+        System.out.println(thicknessLineContainer.getLayoutY());
     }
 
     private void keepThicknessLineContainerInBounds() {
@@ -106,6 +125,48 @@ public class EyeballController {
         if (thicknessLineContainer.getLayoutY() > 75) thicknessLineContainer.setLayoutY(75);
     }
 
+    // ============ TORTUOSITY LINE TRANSLATIONS ============
+
+    public void onTortuosityEntered(MouseEvent mouseEvent){
+        ((Node) mouseEvent.getSource()).setCursor(Cursor.HAND);
+
+    }
+
+    public void onTortuosityExited(MouseEvent mouseEvent){
+        ((Node) mouseEvent.getSource()).setCursor(Cursor.DEFAULT);
+    }
+
+    public void onTortuosityPressed(MouseEvent mouseEvent){
+        dragDelta.y = mouseEvent.getSceneY();
+        ((Node) mouseEvent.getSource()).setCursor(Cursor.CLOSED_HAND);
+        mouseEvent.consume();
+
+    }
+    public void onTortuosityReleased(MouseEvent mouseEvent) {
+        ((Node) mouseEvent.getSource()).setCursor(Cursor.OPEN_HAND);
+        mouseEvent.consume();
+    }
+    public void onTortuosityDragged(MouseEvent mouseEvent) {
+        if (mouseEvent.isPrimaryButtonDown()) {
+            double yOffset = mouseEvent.getSceneY() - dragDelta.y;
+            double xOffset = mouseEvent.getSceneX() - dragDelta.x;
+
+            double r = rotation * Math.PI / 180;
+
+            double offset = Math.cos(r) * yOffset + Math.sin(r) * (-xOffset);
+
+            tortuosityLineContainer.setLayoutY(tortuosityLineContainer.getLayoutY() + offset);
+        }
+        dragDelta.y = mouseEvent.getSceneY();
+        dragDelta.x = mouseEvent.getSceneX();
+        keepTortuosityLineContainerInBounds();
+        mouseEvent.consume();
+    }
+
+    private void keepTortuosityLineContainerInBounds() {
+        if (tortuosityLineContainer.getLayoutY() < 10) tortuosityLineContainer.setLayoutY(10);
+        if (tortuosityLineContainer.getLayoutY() > 75) tortuosityLineContainer.setLayoutY(75);
+    }
 
 
     class Delta {
